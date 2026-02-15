@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authorization Callback - Ryusuke AI</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.6; text-align: center; }
+    h1 { font-size: 1.5em; }
+    .code { background: #f4f4f4; padding: 12px; border-radius: 8px; font-family: monospace; word-break: break-all; margin: 20px 0; }
+    .success { color: #2d7d46; }
+    .error { color: #d32f2f; }
+  </style>
+</head>
+<body>
+  <h1>Ryusuke AI</h1>
+  <div id="result"></div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const error = params.get('error');
+    const el = document.getElementById('result');
+    if (code) {
+      el.innerHTML = '<p class="success">Authorization successful.</p><p>You can close this window.</p><div class="code">' + code + '</div>';
+    } else if (error) {
+      el.innerHTML = '<p class="error">Authorization failed: ' + error + '</p>';
+    } else {
+      el.innerHTML = '<p>Waiting for authorization...</p>';
+    }
+  </script>
+</body>
+</html>
